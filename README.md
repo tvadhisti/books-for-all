@@ -24,8 +24,7 @@ Wishlist and Collection: Users can create wish lists for books they plan to read
 - Search Bar for Easy Book Discovery
 - Wishlist to Keep Track of Desired Books
 - User Login for Personalized Experience
-- Dropdown Categories for Efficient Genre-Based Navigation
-- Personalized Book Recommendations
+- Responsive Categories Buttons for Efficient Genre-Based Navigation
 - Detailed Book Descriptions
 
 **Source of Book Catalog Dataset:**
@@ -37,8 +36,6 @@ The book catalog dataset for BooksForAll is sourced from Google Books API
 BooksForAll will implement role-based access control with the following user roles:
 
 Registered User: Users with personal accounts. They can create wishlists, manage collections, and receive personalized recommendations.
-
-Moderator/Administrator: Users responsible for content moderation and administration. They have privileges to manage user accounts and book listings. CRUD
 
 
 
