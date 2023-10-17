@@ -5,4 +5,4 @@ def index(request):
     context = {
         'title' : 'books_for_all'
     }
-    return render(request, 'homepage/index.html', context)
+    return render(request, 'homepage/bottompart.html', context)
