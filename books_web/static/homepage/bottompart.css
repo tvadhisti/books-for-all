@@ -1,0 +1,48 @@
+.genre-btn {
+    background-color: #9C7EC2;
+    padding: 5px 40px;
+    border-radius: 30px;
+    color: #FFF;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin-left: 20px;
+}
+
+.genre-card-container {
+    border-radius: 20px;
+    background: rgba(199, 198, 198, 0.21);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.25);
+    /* height: 500px; */
+    padding: 40px 25px;
+}
+
+.genre-section {
+    padding: 50px 20px 20px 20px;
+}
+
+.hp-book-title {
+    color: #000;
+    font-family: DM Sans;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.hp-book-author {
+    color: #000;
+    font-family: DM Serif Display;
+    font-size: 18px;
+    font-weight: 400;
+
+}
+
+.browse {
+    color: #000;
+    font-family: DM Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 50px;
+}
