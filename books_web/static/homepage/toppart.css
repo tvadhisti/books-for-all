@@ -1,4 +1,4 @@
-.hp-navbar{
+.hp-navbar {
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -39,15 +39,16 @@
     scroll-snap-align: start;
     border-radius: 30px;
     min-height: 500px;
-    width: 1000px; 
+    width: 1000px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .card:nth-child(odd) {
     background: black;
 }
+
 .card:nth-child(even) {
     background: blue;
 }
-
