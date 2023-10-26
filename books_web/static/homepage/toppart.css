@@ -6,6 +6,59 @@
     text-align: center;
     align-items: center;
     align-content: center;
+}
 
+.conteudo {
+    overflow: hidden;
+    padding: 60px 0;
+    /* white-space: nowrap;
+    background: white; */
+    width: 100%;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.conteudo:hover .carrousel {
+    animation-play-state: paused;
+}
+
+.carrousel {
+    display: grid;
+    grid-auto-flow: column;
+    scroll-behavior: auto;
+    gap: 1.2rem;
+    overflow-y: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    animation: 5s slide linear infinite;
+    white-space: nowrap;
+}
+
+.carrousel::-webkit-scrollbar {
+    display: none;
+}
+
+.card {
+    scroll-snap-align: start;
+    border-radius: 30px;
+    min-height: 500px;
+    width: 1000px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card:nth-child(odd) {
+    background: black;
+}
+.card:nth-child(even) {
+    background: blue;
 }
 
