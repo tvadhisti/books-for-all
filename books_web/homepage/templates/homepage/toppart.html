@@ -10,7 +10,7 @@
     <!-- {% block meta %}
     {% endblock meta %} -->
     <link rel="stylesheet" type="text/css" href="{% static 'homepage/toppart.css' %}">
-    <link rel="stylesheet" type="image/png" href="{% static 'homepage/logo.png' %}">
+    <link rel="stylesheet" type="image/png" href="{% static 'image/logo.png' %}">
 </head>
 
 <body>
@@ -38,18 +38,17 @@
           </nav>
     </div> -->
 
-    <div class="hp-navbar">
-        <span>logo</span>
-        <img src="logo.png">
-        <img src="{% static 'logo.png' %}" class="img-fluid" alt="...">
+    <div class="hp-navbar" style="background-color: #F5F5F5;">
+        <!-- <span>logo</span> -->
+        <img style="height: 50px;" src="{% static 'image/logo.png' %}" class="img-fluid" alt="...">
 
         <div>
             <input style="background-color: #D9D9D9; width: 500px; border-radius: 20px;" class="form-control me-2"
                 type="search" placeholder="Search" aria-label="Search">
         </div>
         <div>
-            <a style="margin-right: 30px; text-decoration: underline;">logout</a>
-            <a style="text-decoration: underline;">wishlist</a>
+            <a style="margin-right: 50px;">wishlist</a>
+            <a style="margin-right: 20px;">logout</a>
         </div>
     </div>
 
