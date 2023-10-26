@@ -9,25 +9,13 @@
 }
 
 .conteudo {
-    overflow: hidden;
-    padding: 60px 0;
-    /* white-space: nowrap;
-    background: white; */
     width: 100%;
 }
 
-@keyframes slide {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-100%);
-    }
-}
 
-.conteudo:hover .carrousel {
+/* .conteudo:hover .carrousel {
     animation-play-state: paused;
-}
+} */
 
 .carrousel {
     display: grid;
@@ -40,6 +28,7 @@
     scrollbar-width: none;
     animation: 5s slide linear infinite;
     white-space: nowrap;
+    scroll-padding: 0 24px;
 }
 
 .carrousel::-webkit-scrollbar {
