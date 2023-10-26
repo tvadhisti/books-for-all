@@ -7,9 +7,14 @@
     align-content: center;
 }
 
-.conteudo {
+.sticky {
+    position: fixed;
+    top: 0;
     width: 100%;
+    z-index: 999;
 }
+
+
 
 a {
     text-decoration: underline !important;
@@ -36,6 +41,7 @@ a:hover {
     animation: 5s slide linear infinite;
     white-space: nowrap;
     scroll-padding: 0 24px;
+    margin-top: 90px !important;
 }
 
 .carrousel::-webkit-scrollbar {
