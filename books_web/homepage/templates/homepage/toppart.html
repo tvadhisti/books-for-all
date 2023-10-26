@@ -1,8 +1,56 @@
 {% extends 'homepage/index.html' %}
-
+{% load static %}
 {% block toppart %}
 
 <h1>toppart</h1>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- {% block meta %}
+    {% endblock meta %} -->
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage/toppart.css' %}">
+</head>
+<body>
+    <!-- <div>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="logo.png" alt="Bootstrap">
+                </a>
+                <div>
+                    <form class="d-flex justify-content-center align-items-center" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <div class="nav-item">
+                        <a class="nav-link" href="#" style="text-decoration: underline;">wishlist</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link" href="#" style="text-decoration: underline;">logout</a>
+                    </div>
+                </div>
+            </div>
+          </nav>
+    </div> -->
+
+    <div class="hp-navbar">
+        <span>logo</span>
+
+        <div>
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        </div>
+        <div>
+            <a style="margin-right: 30px; text-decoration: underline;">logout</a>
+            <a style="text-decoration: underline;">wishlist</a>
+        </div>
+    </div>
+</body>
+
+
+
 {% block bottompart %}
 
 {% endblock bottompart %}

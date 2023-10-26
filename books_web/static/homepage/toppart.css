@@ -1,0 +1,11 @@
+.hp-navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #FFF;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+
+}
+
