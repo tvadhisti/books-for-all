@@ -41,14 +41,13 @@
         </div>
     </div>
     <div class="genre-section" id="bookcollection">
-        <div class="genre-card-container">
-
+        <div class="genre-card-container container">
             {% for row in bookmst %}
-            <div class="d-flex justify-content-between">
+            <div class="row align-items-start">
                 {% for data in row %}
-                <div class="p-2">
+                <div style="padding: 30px 40px;" class=" col">
                     <div class="d-flex">
-                        <div class="flex-shrink-0">
+                        <div class="d-flex">
                             <img style="width: 173px; height: 223px; border-radius: 5px; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
                             ;" src="{{ data.url }}">
                         </div>
