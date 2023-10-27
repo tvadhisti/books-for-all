@@ -50,9 +50,9 @@ a:hover {
 
 .card {
     scroll-snap-align: start;
-    border-radius: 30px;
-    min-height: 500px;
-    width: 1000px;
+    border-radius: 20px !important;
+    min-height: 370px !important;
+    width: 630px !important;
     display: flex;
     align-items: center;
     justify-content: center;

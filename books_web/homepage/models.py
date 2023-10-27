@@ -6,4 +6,5 @@ class MasterBooks(models.Model):
     genre = models.CharField(max_length=255)
     description = models.TextField()
     rating = models.IntegerField()
+    url = models.CharField(max_length=255, default='')
     
