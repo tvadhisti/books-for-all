@@ -16,63 +16,91 @@
 </head>
 
 <body>
-    <h1 class="testpart">bottompart</h1>
     <h4 class="browse">browse</h4>
     <br>
+
     <div style="display: flex; justify-content: center;">
-        <span class="genre-btn" style="background-color: #E79580;">romance</span>
-        <span class="genre-btn" style="background-color: #99C1B4;">horror</span>
-        <span class="genre-btn" style="background-color: #64A3BE;">fiction</span>
-        <span class="genre-btn" style="background-color: #9C7EC2;">comic</span>
-        <span class="genre-btn" style="background-color: #F0CC92;">comedy</span>
+        <div>
+            <span class="genre-btn" style="background-color: rgb(195, 195, 195);" onclick="allfunction()">all</span>
+        </div>
+        <div>
+            <span class="genre-btn" style="background-color: #E79580;" onclick="romancefunction()">romance</span>
+        </div>
+        <div>
+            <span class="genre-btn" style="background-color: #99C1B4;" onclick="horrorfunction()">thriller
+            </span>
+        </div>
+        <div>
+            <span class="genre-btn" style="background-color: #64A3BE;" onclick="fictionfunction()">fiction</span>
+        </div>
+        <div>
+            <span class="genre-btn" style="background-color: #9C7EC2;" onclick="comicfunction()">fantasy</span>
+        </div>
+        <div>
+            <span class="genre-btn" style="background-color: #F0CC92;" onclick="comedyfunction()">comedy</span>
+        </div>
+    </div>
+    <div class="genre-section" id="bookcollection">
+        <div class="genre-card-container container">
+            {% for row in bookmst %}
+            <div class="row align-items-start">
+                {% for data in row %}
+                <div style="padding: 30px 40px;" class=" col">
+                    <div class="d-flex">
+                        <div class="d-flex">
+                            <img style="width: 173px; height: 223px; border-radius: 5px; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
+                            ;" src="{{ data.url }}">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h4 class="hp-book-title">{{ data.title }}</h4>
+                            <h5 class="hp-book-author">{{ data.author }}</h5>
+                            <h5>
+                                {% if data.rating == 1 %}★
+                                {% elif data.rating == 2 %}★★
+                                {% elif data.rating == 3 %}★★
+                                {% elif data.rating == 4 %}★★★★
+                                {% elif data.rating == 5 %}★★★★★
+                                {% endif %}
+
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
-    <div class="genre-section">
-        <div class="genre-card-container">
-            <div class="d-flex justify-content-between">
-
-                <div class="p-2">
-                    <div class="d-flex">
-                        <div class="flex-shrink-0">
-                            <img style="width: 173px; height: 223px; border-radius: 5px; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
-                            ;"
-                                src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-movie-poster-template-design-0f5fff6262fdefb855e3a9a3f0fdd361_screen.jpg?ts=1636996054">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h4 class="hp-book-title">Hunger Games</h4>
-                            <h5 class="hp-book-author">by Raisa</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2">
-                    <div class="d-flex">
-                        <div class="flex-shrink-0">
-                            <img style="width: 173px; height: 223px; border-radius: 5px; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
-                            ;"
-                                src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-movie-poster-template-design-0f5fff6262fdefb855e3a9a3f0fdd361_screen.jpg?ts=1636996054">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h4 class="hp-book-title">Hunger Games</h4>
-                            <h5 class="hp-book-author">by Raisa</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2">
-                    <div class="d-flex">
-                        <div class="flex-shrink-0">
-                            <img style="width: 173px; height: 223px; border-radius: 5px; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
-                            ;"
-                                src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-movie-poster-template-design-0f5fff6262fdefb855e3a9a3f0fdd361_screen.jpg?ts=1636996054">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h4 class="hp-book-title">Hunger Games</h4>
-                            <h5 class="hp-book-author">by Raisa</h5>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
 </body>
 
+<script>
+
+    function allfunction() {
+        var type = '';
+        window.location = '/?type=' + type + '#bookcollection';
+    };
+
+    function romancefunction() {
+        var type = 'Romance';
+        window.location = '/?type=' + type + '#bookcollection';
+    };
+    function horrorfunction() {
+        var type = 'Thriller';
+        window.location = '/?type=' + type + '#bookcollection';
+    };
+    function fictionfunction() {
+        var type = 'Fiction';
+        window.location = '/?type=' + type + '#bookcollection';
+    };
+    function comicfunction() {
+        var type = 'Fantasy';
+        window.location = '/?type=' + type + '#bookcollection';
+    };
+    function comedyfunction() {
+        var type = 'Comedy';
+        window.location = '/?type=' + type + '#bookcollection';
+    };
+
+</script>
 {% endblock bottompart %}

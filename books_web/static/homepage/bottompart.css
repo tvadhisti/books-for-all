@@ -8,6 +8,19 @@
     font-size: 24px;
     font-weight: 400;
     margin-left: 20px;
+    transition: 0.5s;
+}
+
+.genre-btn:hover {
+    cursor: pointer !important;
+    font-size: 28px !important;
+    font-weight: 600;
+}
+
+/* GABISA COY */
+.genre-btn:focus {
+    font-size: 28px !important;
+    font-weight: 600;
 }
 
 .genre-card-container {
@@ -45,4 +58,9 @@
     font-weight: 400;
     line-height: normal;
     margin-left: 50px;
+    margin-top: 40px;
+}
+
+.paddingcustom {
+    padding: 40px !important;
 }

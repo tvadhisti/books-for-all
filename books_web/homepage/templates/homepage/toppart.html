@@ -1,8 +1,80 @@
 {% extends 'homepage/index.html' %}
-
+{% load static %}
 {% block toppart %}
 
-<h1>toppart</h1>
+<!-- <h1>toppart</h1> -->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- {% block meta %}
+    {% endblock meta %} -->
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage/toppart.css' %}">
+    <link rel="stylesheet" type="image/png" href="{% static 'image/logo.png' %}">
+</head>
+
+<body>
+    <!-- <div>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="logo.png" alt="Bootstrap">
+                </a>
+                <div>
+                    <form class="d-flex justify-content-center align-items-center" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <div class="nav-item">
+                        <a class="nav-link" href="#" style="text-decoration: underline;">wishlist</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link" href="#" style="text-decoration: underline;">logout</a>
+                    </div>
+                </div>
+            </div>
+          </nav>
+    </div> -->
+
+    <div class="hp-navbar sticky" style="background-color: #F5F5F5;">
+        <!-- <span>logo</span> -->
+        <img style="height: 50px;" src="{% static 'image/logo.png' %}" class="img-fluid" alt="...">
+
+        <div>
+            <input style="background-color: #D9D9D9; width: 500px; border-radius: 20px;" class="form-control me-2"
+                type="search" placeholder="Search" aria-label="Search">
+        </div>
+        <div>
+            <a style="margin-right: 50px;">wishlist</a>
+            <a style="margin-right: 20px;">logout</a>
+        </div>
+    </div>
+
+    <div class="conteudo">
+        <div class="carrousel">
+            <article class="card">
+                <h1>TEST</h1>
+            </article>
+            <article class="card">
+                <h1>TEST</h1>
+            </article>
+            <article class="card">
+                <h1>TEST</h1>
+            </article>
+            <article class="card">
+                <h1>TEST</h1>
+            </article>
+            <article class="card">
+                <h1>TEST</h1>
+            </article>
+        </div>
+    </div>
+
+</body>
+
+
 {% block bottompart %}
 
 {% endblock bottompart %}
