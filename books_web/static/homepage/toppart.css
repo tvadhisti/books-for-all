@@ -25,28 +25,40 @@ a:hover {
     cursor: pointer;
 }
 
-/* .conteudo:hover .carrousel {
+.conteudo:hover .carrousel {
     animation-play-state: paused;
-} */
+}
+
+.conteudo {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    position: relative;
+    transition-delay: 8s !important;
+}
 
 .carrousel {
+    /* display: flex; */
     display: grid;
     grid-auto-flow: column;
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
     gap: 1.2rem;
-    overflow-y: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    animation: 5s slide linear infinite;
-    white-space: nowrap;
-    scroll-padding: 0 24px;
+    /* overflow-y: auto !important; */
+    /* overscroll-behavior-x: contain !important; */
+    /* scroll-snap-type: x mandatory !important; */
+    /* scrollbar-width: none !important; */
+    /* animation: 5s slide infinite linear !important; */
+    /* scroll-padding: 0 24px; */
     margin-top: 90px !important;
+    animation-name: slide;
+    animation-duration: 12s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transition-delay: 10s !important;
 }
 
-.carrousel::-webkit-scrollbar {
+/* .carrousel::-webkit-scrollbar {
     display: none;
-}
+} */
 
 .card {
     scroll-snap-align: start;
@@ -63,5 +75,18 @@ a:hover {
 }
 
 .card:nth-child(even) {
-    background: blue;
+    background: red;
+}
+
+@keyframes slide {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+
+    ;
 }
