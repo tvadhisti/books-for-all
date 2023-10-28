@@ -61,21 +61,23 @@ a:hover {
 } */
 
 .card {
-    scroll-snap-align: start;
+    /* scroll-snap-align: start; */
     border-radius: 20px !important;
-    min-height: 370px !important;
-    width: 630px !important;
-    display: flex;
+    /* min-height: 370px !important; */
+    width: 610px;
+
     align-items: center;
     justify-content: center;
+
 }
 
 .card:nth-child(odd) {
-    background: black;
+    background: #99C1B4;
 }
 
 .card:nth-child(even) {
-    background: red;
+    background: #64A3BE;
+    ;
 }
 
 @keyframes slide {
