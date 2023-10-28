@@ -71,12 +71,22 @@ a:hover {
 
 }
 
-.card:nth-child(odd) {
+.card:nth-child(1) {
     background: #99C1B4;
 }
 
-.card:nth-child(even) {
+.card:nth-child(2) {
     background: #64A3BE;
+    ;
+}
+
+.card:nth-child(3) {
+    background: #E79580;
+    ;
+}
+
+.card:nth-child(4) {
+    background: #F0CC92;
     ;
 }
 

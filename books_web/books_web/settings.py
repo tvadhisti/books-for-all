@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'homepage',
     'loginpage',
     'bookpage',
+    'wishlist',
 ]
 
 MIDDLEWARE = [
