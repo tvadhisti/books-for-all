@@ -43,21 +43,28 @@
         <div class="row justify-content-center" style="margin-top: 30px; ">
             <div class="col-3">
                 <img style="border-radius: 20px; height: 475px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
-                    src="http://images.amazon.com/images/P/0671525832.01.LZZZZZZZ.jpg">
+                    src="{{  book.url }}">
             </div>
             <div class="col-5">
                 <h1 class="book-title">
-                    The Hunger Games
+                    {{ book.title }}
                 </h1>
                 <h3 class="book-author">
-                    by Raisa
+                    {{ book.author }}
                 </h3>
 
-                <h3>★★★★★</h3>
+                <h3>
+                    {% if book.rating == 1 %}★
+                    {% elif book.rating == 2 %}★★
+                    {% elif book.rating == 3 %}★★
+                    {% elif book.rating == 4 %}★★★★
+                    {% elif book.rating == 5 %}★★★★★
+                    {% endif %}
 
+                </h3>
                 <div>
                     <h4 class="book-genre">
-                        genre
+                        {{ book.genre }}
                     </h4>
                 </div>
             </div>
@@ -69,11 +76,7 @@
         <div class="desc-container">
             <h2 class="book-desc">description</h2>
             <p class="book-desc-p">
-                The Hunger Games film series is composed of science fiction dystopian adventure films, based on
-                The
-                Hunger Games trilogy of novels by American author Suzanne Collins. The films are distributed by
-                Lionsgate and produced by Nina Jacobson and Jon Kilik.
-            </p>
+                {{ book.description }}
         </div>
 
     </div>

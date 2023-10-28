@@ -52,7 +52,9 @@
                             ;" src="{{ data.url }}">
                         </div>
                         <div class="flex-grow-1 ms-3">
-                            <h4 class="hp-book-title">{{ data.title }}</h4>
+                            <a style="text-decoration: none  !important;" href="/book/{{ data.id }}"
+                                class="hp-book-title">
+                                {{ data.title }}</a>
                             <h5 class="hp-book-author">{{ data.author }}</h5>
                             <h5>
                                 {% if data.rating == 1 %}★
