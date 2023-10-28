@@ -16,10 +16,10 @@ const sendSearchData = (books) => {
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
         },
-        success: (res) => {
+        success: (res)=> {
             console.log(res)
         },
-        error: (err) => {
+        error: (err)=> {
             console.log(err)
         }
     })

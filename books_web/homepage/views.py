@@ -29,5 +29,8 @@ def search_engine(request):
     if request.headers.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         books = request.POST.get('books')
         print(books)
-        return JsonResponse({'data': f'{books}'})
+        # qs = MasterBooks.objects.filter(name__icontains=books)
+        # print(qs)
+        return JsonResponse({'data': books})
     return JsonResponse({})
+
