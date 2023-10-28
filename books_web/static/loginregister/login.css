@@ -1,0 +1,76 @@
+body {
+    height: 100vh; /* Set the body's height to the viewport height */
+    margin: 0;
+    position: relative;
+    left: 200px; /* Adjust the left position as needed */
+    top: 65%;
+    transform: translateY(-50%);
+    overflow: hidden; /* Hide content that exceeds the viewport */
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.img-books {
+    position: fixed; /* Position it relative to the viewport */
+    right: 210; /* Align the image to the right */
+    bottom: 80; /* Align the image to the bottom */
+}
+
+.btn-login_btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-items: center;
+    width: 250px;
+    border-radius: 20px;
+    margin-top: 15px;
+}
+
+.btn-login_btn:hover {
+    background-color: #2774a0;
+}
+
+.login-container {
+    background-color: #7CA396;
+    padding: 10px;
+    border: 1px solid #7CA396;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    max-width: 500px;
+    max-height: 580px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.form-control {
+    text-align: left;
+    padding: 10px;
+    width: 250px;
+    align-items: left; 
+    flex-direction: column;
+}
+
+.img-logo {
+    height: 300px;
+    position: relative;
+    left: -20px;
+    top : 15px
+}
