@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from homepage.models import MasterBooks
+from .models import MasterBooks
 import math
+from django.http import JsonResponse
+
 # Create your views here.
 def index(request):
     booktype = request.GET.get("type", "")
@@ -23,4 +25,9 @@ def index(request):
     }
     return render(request, 'homepage/bottompart.html', context)
 
-
+def search_engine(request):
+    if request.headers.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
+        books = request.POST.get('books')
+        print(books)
+        return JsonResponse({'data': f'{books}'})
+    return JsonResponse({})

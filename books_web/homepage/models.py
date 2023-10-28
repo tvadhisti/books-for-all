@@ -8,3 +8,5 @@ class MasterBooks(models.Model):
     rating = models.IntegerField()
     url = models.CharField(max_length=255, default='')
     
+    def __str__(self):
+        return str(self.name)
