@@ -54,7 +54,7 @@ body {
 }
 
 .login input[type="submit"]:hover {
-    background-color: #FFC9D8;
+    background-color: #99C1B4;
 }
 
 .register-link {
@@ -65,4 +65,8 @@ body {
 
 .register-link:hover {
     text-decoration: underline;
+}
+
+.dft{
+    color: #333;
 }
