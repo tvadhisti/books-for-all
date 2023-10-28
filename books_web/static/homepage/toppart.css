@@ -34,6 +34,7 @@ a:hover {
     overflow: hidden !important;
     position: relative;
     transition-delay: 8s !important;
+    margin-top: 25px;
 }
 
 .carrousel {
