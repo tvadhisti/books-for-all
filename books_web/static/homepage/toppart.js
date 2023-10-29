@@ -9,20 +9,20 @@ const sendSearchData = (books) => {
     $.ajax({
         type: 'POST',
         url: 'search/',
-        data: {
+        data: { 
             'csrfmiddlewaretoken': csrf,
             'books': books,
         },
         headers: {
-            'X-Requested-With': 'XMLHttpRequest'
+            'X-Requested-With': 'XMLHttpRequest',
         },
         success: (res)=> {
             console.log(res)
         },
         error: (err)=> {
             console.log(err)
-        }
-    })
+        },
+    });
 }
 
 searchInput.addEventListener('keyup', e=>{

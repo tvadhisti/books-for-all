@@ -5,5 +5,5 @@ app_name = 'homepage'
 
 urlpatterns = [
     path('', index, name="home"),
-    path('search/', search_engine, name="search"),
+    path('search/', search_engine, name='search'),
 ]
