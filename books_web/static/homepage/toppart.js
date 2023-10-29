@@ -9,26 +9,33 @@ const sendSearchData = (books) => {
     $.ajax({
         type: 'POST',
         url: 'search/',
-        data: { 
+        data: {
             'csrfmiddlewaretoken': csrf,
             'books': books,
         },
         headers: {
             'X-Requested-With': 'XMLHttpRequest',
         },
-        success: (res)=> {
-            console.log(res)
+        success: (res) => {
+            var innerstring = "";
+            for (var i = 0; i < res.length; i++) {
+
+                innerstring = innerstring + "<a style='text-decoration: none;' href='/book/"
+                    + res[i].id + "'><p style='color: black; text-decoration: none !important;'>" + res[i].title + "</p></a>";
+                console.log(res[i])
+            }
+            resultBox.innerHTML = innerstring;
         },
-        error: (err)=> {
+        error: (err) => {
             console.log(err)
         },
     });
 }
 
-searchInput.addEventListener('keyup', e=>{
+searchInput.addEventListener('keyup', e => {
     console.log(e.target.value)
 
-    if(resultBox.classList.contains('not-visible')){
+    if (resultBox.classList.contains('not-visible')) {
         resultBox.classList.remove('not-visible')
     }
 

@@ -3,9 +3,9 @@ from .models import WishlistItem
 from homepage.models import MasterBooks
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
-
-
+@login_required(login_url='/auth/login')
 def wishlist_view(request):
     if request.user.is_authenticated:
         user = request.user
