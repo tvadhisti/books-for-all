@@ -14,11 +14,10 @@
     z-index: 999;
 }
 
-
-
 a {
     text-decoration: underline !important;
     font-family: DM Sans;
+    color: black;
 }
 
 a:hover {

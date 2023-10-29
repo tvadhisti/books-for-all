@@ -49,17 +49,17 @@
         <!-- <span>logo</span> -->
         <img style="height: 50px;" src="{% static 'image/logo.png' %}" class="img-fluid" alt="...">
 
-        <div class="w-100 text-center">
-            <form id="search-form" autocomplete="off">
+        <div class="w-100 text-center" style="display: inline-block;">
+            <form id="search-form" autocomplete="off" style="display: inline-block;">
                 {% csrf_token %}
                 <input id="search-input" style="background-color: #D9D9D9; width: 500px; border-radius: 20px;" class="form-control me-2"
                     type="text" placeholder="Search" aria-label="Search">
             </form>
-            <div id="results-box" class="results-card not-visible"></div>
+            <div id="results-box" class="results-card not-visible" style="background-color: #D9D9D9; width: 500px; border-radius: 20px;"></div>
         </div>
-        <div>
+        <div style="display: flex; align-items: center;">
             <a style="margin-right: 50px;" href="{% url 'wishlist_view' %} ">wishlist</a>
-            <a style="margin-right: 20px;" href="{% url 'loginpage:login' %}">logout</a>
+            <a style="margin-right: 10px;" href="{% url 'loginpage:login' %}">logout</a>
         </div>
     </div>
 
