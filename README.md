@@ -20,12 +20,12 @@ Wishlist and Collection: Users can create wish lists for books they plan to read
 
 **Modules/Features:**
 
-- Homepage with Books Categorized by Genres: Pascal Pahlevi
-- Search Bar for Easy Book Discovery: Pascal Pahlevi
-- Wishlist to Keep Track of Desired Books: Raisa Fadilla
+- Homepage carousel: Raisa Fadilla
+- Search Bar for Easy Book Discovery: Raisa Fadilla 
+- Wishlist to Keep Track of Desired Books: Pascal Pahlevi
 - User Login for Personalized Experience: Maria Helga
 - Responsive Categories Buttons for Efficient Genre-Based Navigation: Tiva Adhisti
-- Detailed Book Descriptions: Maria Helga
+- Detailed Book Descriptions: Tiva Adhisti
 
 **Source of Book Catalog Dataset:**
 
