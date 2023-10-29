@@ -32,14 +32,23 @@ const sendSearchData = (books) => {
     });
 }
 
-searchInput.addEventListener('keyup', e => {
-    console.log(e.target.value)
+// searchInput.addEventListener('keyup', e => {
+//     console.log(e.target.value)
 
-    if (resultBox.classList.contains('not-visible')) {
-        resultBox.classList.remove('not-visible')
+//     if (resultBox.classList.contains('not-visible')) {
+//         resultBox.classList.remove('not-visible')
+//     }
+
+//     sendSearchData(e.target.value)
+// })
+
+searchInput.addEventListener('input', function() {
+    if (this.value.trim() === '') {
+        resultBox.classList.add('not-visible'); 
+    } else {
+        resultBox.classList.remove('not-visible'); 
+        sendSearchData(this.value); 
     }
-
-    sendSearchData(e.target.value)
-})
+});
 
 
