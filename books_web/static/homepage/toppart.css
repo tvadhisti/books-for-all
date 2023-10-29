@@ -18,10 +18,12 @@ a {
     text-decoration: underline !important;
     font-family: DM Sans;
     color: black;
+    font-size: 20px !important;
 }
 
 a:hover {
     cursor: pointer;
+    color: rgb(80, 79, 79) !important;
 }
 
 .conteudo:hover .carrousel {

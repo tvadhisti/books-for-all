@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,8 +29,10 @@
                 <img style="height: 117px;" src="{% static 'image/logo.png' %}" class="img-fluid" alt="...">
             </div>
             <div>
-                <a href="{% url 'wishlist_view' %} " style="margin-right: 50px; text-decoration: underline;">wishlist</a>
-                <a href="{% url 'loginpage:login' %}" style="margin-right: 20px; text-decoration: underline;">logout</a>
+                <a class="book-link" href="{% url 'wishlist_view' %} "
+                    style="margin-right: 50px; text-decoration: underline;">wishlist</a>
+                <a class="book-link" href="{% url 'loginpage:login' %}"
+                    style="margin-right: 20px; text-decoration: underline;">logout</a>
             </div>
         </div>
 
@@ -58,7 +61,8 @@
                         {{ book.genre }}
                     </h4>
                     <button class="btn btn-primary btn-lg add-to-wishlist ms-3 mt-4" data-toggle="modal"
-                        data-target="#wishlistModal" data-bookid="{{ book.id }}" style="background-color: #99C1B4; color: black;">
+                        data-target="#wishlistModal" data-bookid="{{ book.id }}"
+                        style="background-color: #99C1B4; border: none; color: black;">
                         Add to Wishlist
                     </button>
                 </div>
@@ -72,47 +76,48 @@
         </div>
     </div>
 
-     <!-- Your jQuery and Bootstrap JavaScript libraries -->
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
- 
-     <!-- JavaScript for adding to wishlist and modal confirmation -->
-     <script>
-         $(document).ready(function () {
-             // Capture the click event on the "Add to Wishlist" button
-             $('.add-to-wishlist').click(function () {
-                 var bookId = $(this).data('bookid');
- 
-                 // Send an AJAX request to add the book to the wishlist
-                 $.ajax({
-                     url: '{% url "add_to_wishlist" 0 %}'.replace('0', bookId),  // Replace 0 with the book ID
-                     type: 'GET',
-                     success: function () {
-                         // Trigger the modal to show the confirmation message
-                         $('#wishlistModal').modal('show');
-                     },
-                     error: function () {
-                         console.log('Error adding to wishlist');
-                     }
-                 });
-             });
-         });
-     </script>
- 
-     <!-- Wishlist Confirmation Modal -->
-     <div class="modal fade" id="wishlistModal" tabindex="-1" role="dialog" aria-labelledby="wishlistModalLabel"
-         aria-hidden="true">
-         <div class="modal-dialog" role="document">
-             <div class="modal-content">
-                 <div class="modal-header">
-                     <h5 class="modal-title" id="wishlistModalLabel">Book Added to Wishlist</h5>
-                 </div>
-                 <div class="modal-body">
-                     The book has been added to your wishlist.
-                 </div>
-             </div>
-         </div>
-     </div>
+    <!-- Your jQuery and Bootstrap JavaScript libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for adding to wishlist and modal confirmation -->
+    <script>
+        $(document).ready(function () {
+            // Capture the click event on the "Add to Wishlist" button
+            $('.add-to-wishlist').click(function () {
+                var bookId = $(this).data('bookid');
+
+                // Send an AJAX request to add the book to the wishlist
+                $.ajax({
+                    url: '{% url "add_to_wishlist" 0 %}'.replace('0', bookId),  // Replace 0 with the book ID
+                    type: 'GET',
+                    success: function () {
+                        // Trigger the modal to show the confirmation message
+                        $('#wishlistModal').modal('show');
+                    },
+                    error: function () {
+                        console.log('Error adding to wishlist');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Wishlist Confirmation Modal -->
+    <div class="modal fade" id="wishlistModal" tabindex="-1" role="dialog" aria-labelledby="wishlistModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="wishlistModalLabel">Book Added to Wishlist</h5>
+                </div>
+                <div class="modal-body">
+                    The book has been added to your wishlist.
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
+
 </html>

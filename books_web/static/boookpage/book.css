@@ -15,7 +15,14 @@
     z-index: 999;
 }
 
+book-link {
+    color: black;
+}
 
+.book-link:hover {
+    color: red(93, 92, 92) !important;
+    cursor: pointer;
+}
 
 a {
     font-family: DM Sans;
@@ -24,7 +31,7 @@ a {
 
 a:hover {
     cursor: pointer;
-    color: black;
+    color: red !important;
 }
 
 .book-title {
@@ -90,4 +97,12 @@ a:hover {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+button:hover {
+    color: #7fa196 !important;
+}
+
+.btn .btn-primary .btn-lg .add-to-wishlist:hover {
+    color: #7fa196 !important;
 }
