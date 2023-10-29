@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from homepage.models import MasterBooks
+from .models import MasterBooks
 import math
-# Create your views here.
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='/auth/login')
 def index(request):
     booktype = request.GET.get("type", "")
     
@@ -23,4 +26,17 @@ def index(request):
     }
     return render(request, 'homepage/bottompart.html', context)
 
+def search_engine(request):
+    if request.headers.get('X_REQUESTED_WITH') == 'XMLHttpRequest':
+        books = request.POST.get('books')
+        qs = MasterBooks.objects.filter(title__icontains=books)
+
+        qs = list(qs.values())[:5]
+
+        # if len(qs)>0 and len(books)>0:
+        #     data = []
+
+    
+        return JsonResponse(qs, safe=False)
+    return JsonResponse({})
 

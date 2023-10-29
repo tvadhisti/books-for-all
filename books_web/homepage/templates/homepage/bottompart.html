@@ -13,8 +13,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'homepage/bottompart.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script> 
 </head>
 
 <body>
@@ -63,15 +61,12 @@
                             <h5>
                                 {% if data.rating == 1 %}★
                                 {% elif data.rating == 2 %}★★
-                                {% elif data.rating == 3 %}★★
+                                {% elif data.rating == 3 %}★★★
                                 {% elif data.rating == 4 %}★★★★
                                 {% elif data.rating == 5 %}★★★★★
                                 {% endif %}
 
                             </h5>
-                            <button class="btn btn-primary add-to-wishlist" data-toggle="modal" data-target="#wishlistModal" data-bookid="{{ data.id }}">
-                                Add to Wishlist
-                                </button>
                         </div>
                     </div>
                 </div>
@@ -111,39 +106,6 @@
         window.location = '/?type=' + type + '#bookcollection';
     };
 
-    $(document).ready(function () {
-    // Capture the click event on the "Add to Wishlist" button
-        $('.add-to-wishlist').click(function () {
-            var bookId = $(this).data('bookid');
-
-            // Send an AJAX request to add the book to the wishlist
-            $.ajax({
-            url: '{% url "add_to_wishlist" 0 %}'.replace('0', bookId),  // Replace 0 with the book ID
-            type: 'GET',
-            success: function () {
-            // Trigger the modal to show the confirmation message
-                $('#wishlistModal').modal('show');
-            },
-            error: function () {
-                console.log('Error adding to wishlist');
-            }
-            });
-        });
-    });
 </script>
-
-<!-- Wishlist Confirmation Modal -->
-<div class="modal fade" id="wishlistModal" tabindex="-1" role="dialog" aria-labelledby="wishlistModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="wishlistModalLabel">Book Added to Wishlist</h5>
-        </div>
-        <div class="modal-body">
-          The book has been added to your wishlist.
-        </div>
-        </div>
-      </div>
-</div>
 
 {% endblock bottompart %}
