@@ -31,7 +31,7 @@ def search_engine(request):
         books = request.POST.get('books')
         qs = MasterBooks.objects.filter(title__icontains=books)
 
-        qs = list(qs.values())[:5]
+        qs = list(qs.values())[:3]
 
         # if len(qs)>0 and len(books)>0:
         #     data = []
