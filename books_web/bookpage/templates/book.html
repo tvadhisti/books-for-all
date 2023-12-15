@@ -65,6 +65,21 @@
                         style="background-color: #99C1B4; border: none; color: black;">
                         Add to Wishlist
                     </button>
+                    <button class="btn btn-primary btn-lg add-to-cart ms-3 mt-4" data-toggle="modal"
+                        data-target="#cartModal" data-bookid="{{ book.id }}"
+                        style="background-color: #2AAA8A; border: none; color: black;">
+                        Add to Cart
+                    </button>
+                    {% comment %} <button class="btn btn-primary btn-lg add-to-wishlist ms-3 mt-4" data-toggle="modal"
+                        data-target="#wishlistModal" data-bookid="{{ book.id }}"
+                        style="background-color: #7DF9FF; border: none; color: black;">
+                        Add Review
+                    </button>
+                    <button class="btn btn-primary btn-lg add-to-wishlist ms-3 mt-4" data-toggle="modal"
+                        data-target="#wishlistModal" data-bookid="{{ book.id }}"
+                        style="background-color: #7DF9FF; border: none; color: black;">
+                        Add Question
+                    </button> {% endcomment %}
                 </div>
             </div>
         </div>
@@ -101,6 +116,25 @@
                 });
             });
         });
+        $(document).ready(function () {
+            // Capture the click event on the "Add to Wishlist" button
+            $('.add-to-cart').click(function () {
+                var bookId = $(this).data('bookid');
+
+                // Send an AJAX request to add the book to the wishlist
+                $.ajax({
+                    url: '{% url "add_to_cart" 0 %}'.replace('0', bookId),  // Replace 0 with the book ID
+                    type: 'GET',
+                    success: function () {
+                        // Trigger the modal to show the confirmation message
+                        $('#cartModal').modal('show');
+                    },
+                    error: function () {
+                        console.log('Error adding to wishlist');
+                    }
+                });
+            });
+        });
     </script>
 
     <!-- Wishlist Confirmation Modal -->
@@ -113,6 +147,19 @@
                 </div>
                 <div class="modal-body">
                     The book has been added to your wishlist.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Book Added to Cart</h5>
+                </div>
+                <div class="modal-body">
+                    The book has been added to your cart.
                 </div>
             </div>
         </div>
