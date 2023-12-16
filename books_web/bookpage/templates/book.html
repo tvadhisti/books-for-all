@@ -60,26 +60,26 @@
                     <h4 class="book-genre">
                         {{ book.genre }}
                     </h4>
-                    <button class="btn btn-primary btn-lg add-to-wishlist ms-3 mt-4" data-toggle="modal"
+                    <button class="btn btn-primary btn-lg add-to-wishlist ms-1 mt-1" data-toggle="modal"
                         data-target="#wishlistModal" data-bookid="{{ book.id }}"
                         style="background-color: #99C1B4; border: none; color: black;">
                         Add to Wishlist
                     </button>
-                    <button class="btn btn-primary btn-lg add-to-cart ms-3 mt-4" data-toggle="modal"
+                    <button class="btn btn-primary btn-lg add-to-cart ms-1 mt-1" data-toggle="modal"
                         data-target="#cartModal" data-bookid="{{ book.id }}"
                         style="background-color: #2AAA8A; border: none; color: black;">
                         Add to Cart
                     </button>
-                    <button class="btn btn-primary btn-lg add-to-review ms-3 mt-4" data-toggle="modal"
+                    <button class="btn btn-primary btn-lg add-to-review ms-1 mt-1" data-toggle="modal"
                         data-target="#reviewModal" data-bookid="{{ book.id }}"
                         style="background-color: #7DF9FF; border: none; color: black;">
                         Add Review
                     </button>
-                    {% comment %} <button class="btn btn-primary btn-lg add-to-wishlist ms-3 mt-4" data-toggle="modal"
-                        data-target="#wishlistModal" data-bookid="{{ book.id }}"
+                    <button class="btn btn-primary btn-lg add-to-question ms-1 mt-1" data-toggle="modal"
+                        data-target="#questionModal" data-bookid="{{ book.id }}"
                         style="background-color: #7DF9FF; border: none; color: black;">
                         Add Question
-                    </button> {% endcomment %}
+                    </button>
                 </div>
             </div>
         </div>
@@ -152,6 +152,14 @@
                 $('#reviewModal').modal('show');
             });
         });
+        $(document).ready(function () {
+            // Capture the click event on the "Add to Review" button
+            $('.add-to-question').click(function () {
+                var bookId = $(this).data('bookid');
+                $("#questionModal #bookid").attr("value", bookId);
+                $('#questionModal').modal('show');
+            });
+        });
     </script>
 
     <!-- Wishlist Confirmation Modal -->
@@ -202,6 +210,25 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="questionModalLabel">Type your question here!</h5>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'add_question' %}">
+                    {% csrf_token %}
+                        <input type="hidden" id="bookid" name="bookid" value="">
+                        <input type="text" name="question" class="form-control" placeholder="Write your question here!"
+                            style="background-color: #f3efef; width: 450px; height: 60px; margin-bottom: 20px; margin-bottom: 20px; margin-right: 10px;">
+                        <input class="btn-login_btn" type="submit" value="Submit question`">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 

@@ -25,4 +25,5 @@ urlpatterns = [
     path('auth/', include('loginpage.urls')),
     path('wishlist/', include('wishlist.urls')),
     path('cart/', include('cart.urls')),
+    path('qna/', include('question.urls')),
 ]
