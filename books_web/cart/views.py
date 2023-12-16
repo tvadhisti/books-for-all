@@ -18,7 +18,7 @@ def cart_view(request):
     row = math.ceil(len(cartlist_books)/2)
     databooks = []
     for i in range(1,row+1):
-        databooks.append(cartlist_books[(i-1)*3:i*3])
+        databooks.append(cartlist_books[(i-1)*2:i*2])
 
     context = {
         'cartlist_books': databooks
