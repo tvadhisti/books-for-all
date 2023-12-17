@@ -14,6 +14,8 @@ urlpatterns = [
     # url format
     # remove
     # path('remove/remove_to_cart/', remove_api.remove_to_cart_api, name='remove_to_cart_api')
+    path('remove/remove_cart/<int:book_id>', remove_api.remove_cart, name='remove_cart_api'),
+    path('remove/remove_wishlist/<int:book_id>', remove_api.remove_wishlist, name='remove_wishlist_api'),
 
     # url format
     # get
