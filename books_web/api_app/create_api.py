@@ -5,6 +5,11 @@ from question.models import QuestionItem, AnswerItem
 from cart.models import CartItem
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib import messages
+import datetime
 
 @csrf_exempt
 def create_review(request):
@@ -57,3 +62,20 @@ def create_answer(request):
         return JsonResponse({'message': 'Answer added'}, status=201)
     else:
         return JsonResponse({'message': 'Wrong Method'}, status=500)
+    
+@csrf_exempt
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            response = {
+                'sessionid':request.session._session_key
+            }
+            
+            return JsonResponse(response, status=200, safe=False)
+        else:
+            messages.info(request, 'Sorry, incorrect username or password. Please try again.')
+    return JsonResponse({'message': 'Wrong Method'}, status=500)
