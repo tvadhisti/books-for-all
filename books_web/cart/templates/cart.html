@@ -75,7 +75,7 @@
 </div>
 
 <div class="genre-section" id="bookcollection">
-    <div class="genre-card-container container">
+    <div class="genre-card-container container mt-5">
         {% for row in cartlist_books %}
         <div class="row align-items-start">
             {% for data in row %}
@@ -91,21 +91,25 @@
                             {{ data.title }}</a>
                         <h5 class="hp-book-author">{{ data.author }}</h5>
                     </div>
-                    <div class="flex-row ms-5">
-                        <button class="btn btn-primary btn-lg add-to-payment ms-3 mt-4" data-toggle="modal"
-                        data-target="#payModal" data-bookid="{{ data.id }}"
-                        data-url="{{ data.url }}"
-                        data-title="{{ data.title }}"
-                        data-author="{{ data.author }}"
-                        style="background-color: #2AAA8A; border: none; color: black;">
-                        Check out!
-                    </button>
+                    <div class="flex">
+                        <button type="button" class="btn btn-danger remove-cart" data-toggle="modal"
+                        data-target="#removeModal" data-bookid="{{ data.id }}">Remove</button>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
         {% endfor %}
+    </div>
+    <div class="container d-flex flex-row-reverse">
+        <button class="btn btn-primary btn-lg add-to-payment ms-3 mt-4" data-toggle="modal"
+        data-target="#payModal" data-bookid="{{ data.id }}"
+        data-url="{{ data.url }}"
+        data-title="{{ data.title }}"
+        data-author="{{ data.author }}"
+        style="background-color: #2AAA8A; border: none; color: black;">
+        Check out!
+    </button>
     </div>
 </div>
 <script>
@@ -124,6 +128,27 @@
             $('#payModal').modal('show');  
         });
     });
+    $(document).ready(function () {
+        // Capture the click event on the button
+        $('.remove-cart').click(function () {
+            var bookId = $(this).data('bookid');
+            // Send an AJAX request to add the book to the wishlist
+            $.ajax({
+                url: '{% url "remove_from_cart" 0 %}'.replace('0', bookId),  // Replace 0 with the book ID
+                type: 'GET',
+                success: function () {
+                    // Trigger the modal to show the confirmation message
+                    $('#removeModal').modal('show');
+                    var timedRefresh = setTimeout(function(){location.reload(true)},1*2000)
+                },
+                error: function () {
+                    console.log('Error remove!');
+                }
+            });
+            
+            $('#removeModal').modal('show');  
+        });
+    });
 </script>
 <div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="payModalLabel"
         aria-hidden="true">
@@ -133,27 +158,32 @@
                     <h5 class="modal-title" id="payModalLabel">Checkout Confirmation</h5>
                 </div>
                 <div style="padding: 30px 40px;" class=" col">
-                    <div class="d-flex">
-                        <div class="d-flex">
-                            <img style="width: 173px; height: 223px; border-radius: 5px; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
-                            ;" src="" id="url">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            {% comment %} <a style="text-decoration: none  !important;"
-                                class="hp-book-title" id="title"> 
-                            </a>
-                            <h5 class="hp-book-author" id="author"></h5> {% endcomment %}
-                        </div>
-                        <div class="flex-row ms-5">
+                    <div class="d-flex justify-content-center">
+                        <div class="flex-row">
                             <p>Are you sure want to check this out?</p>
-                            <button class="btn btn-primary btn-lg" 
-                            style="background-color: #2AAA8A; border: none; color: black;">
-                            Go to payment page!
-                        </button>
+                            <button class="btn btn-primary btn-lg ms-3" style="background-color: #2AAA8A; border: none; color: black;">Go to payment page!</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+</div>
+
+<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removeModalLabel">Remove Notification</h5>
+            </div>
+            <div style="padding: 30px 40px;" class=" col">
+                <div class="d-flex justify-content-center">
+                    <div class="flex-row">
+                        <p>The book has removed from cart!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock bottompart %}
