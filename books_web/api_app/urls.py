@@ -21,5 +21,9 @@ urlpatterns = [
     # get
     # path('get/get_cart/', get_api.get_cart_api, name='get_cart_api')
     path('get/get_homepage_book/', get_api.get_homepage_book, name='get_homepage_book_api'),
-    
+    path('get/get_cart/', get_api.get_cart, name='get_cart_api'),
+    # path('get/get_answer/<int:question_id>', get_api.get_cart, name='get_answer_api'),
+    path('get/get_question_answer/', get_api.get_question_answer, name='get_question_answer_api'),
+    path('get/get_review/<int:book_id>', get_api.get_review, name='get_review_api'),
+    path('get/get_book/<int:book_id>', get_api.get_book, name='get_book_api'),
 ]

@@ -9,7 +9,7 @@ from django.urls import reverse
 @login_required(login_url='/auth/login')
 def book(request, book_id):
     book = MasterBooks.objects.get(pk=book_id)
-    review_list = ReviewItem.objects.filter(book=book).filter(user=request.user) 
+    review_list = ReviewItem.objects.filter(book=book)
     context = {
         'book':book,
         'review':review_list

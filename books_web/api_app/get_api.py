@@ -1,16 +1,12 @@
-from django.shortcuts import render
 from homepage.models import MasterBooks
+from bookpage.models import ReviewItem
+from wishlist.models import WishlistItem
+from question.models import QuestionItem, AnswerItem
+from cart.models import CartItem
 from django.http import JsonResponse
 import json
 from django.core import serializers
 
-# from .models import ReviewItem
-# from django.contrib.auth.decorators import login_required
-# from django.views.decorators.csrf import csrf_exempt, csrf_protect
-# from django.http import HttpResponseRedirect
-# from django.urls import reverse
-
-# @login_required
 def get_homepage_book(request):
     if request.user.is_authenticated:
         if request.method == "GET":
@@ -24,5 +20,69 @@ def get_homepage_book(request):
             json_model = serializers.serialize("json", bookmst)
             data = { "book_list" : json.loads(json_model)}
             return JsonResponse(data)
+        else:
+            return JsonResponse({"message":"Wrong Method"}, status=400)
     else:
-        return JsonResponse({"error":401})
+        return JsonResponse({"message":"Unauthenticated"}, status=401)
+
+def get_cart(request):
+    if request.user.is_authenticated:
+        if request.method == "GET":
+            user = request.user
+            cartlist_items = CartItem.objects.filter(user=user)
+            cartlist_books = [item.book for item in cartlist_items]
+            
+            json_model = serializers.serialize("json", cartlist_books)
+            data = { "cart_list" : json.loads(json_model)}
+            return JsonResponse(data)
+        else: 
+            return JsonResponse({"message":"Wrong Method"}, status=400)
+    else:
+        return JsonResponse({"message":"Unauthenticated"}, status=401)
+
+def get_question_answer(request):
+    if request.user.is_authenticated:
+        if request.method == "GET":
+            question_list = QuestionItem.objects.all()
+            answer_buck = []
+            for item in question_list:
+                temp_buck = {}
+                json_model = serializers.serialize("json", [item])
+                temp_buck['question'] = json.loads(json_model)
+
+                answer = AnswerItem.objects.filter(question=item)
+                json_model = serializers.serialize("json", answer)
+                temp_buck['answer_list']=json.loads(json_model)
+                answer_buck.append(temp_buck)
+
+            data = { "question_answer_list" : answer_buck}
+            return JsonResponse(data)
+        else: 
+            return JsonResponse({"message":"Wrong Method"}, status=400)
+    else:
+        return JsonResponse({"message":"Unauthenticated"}, status=401)
+    
+def get_review(request, book_id):
+    if request.user.is_authenticated:
+        if request.method == "GET":    
+            book = MasterBooks.objects.get(pk=book_id)
+            review_list = ReviewItem.objects.filter(book=book)
+            json_model = serializers.serialize("json", review_list)
+            data = { "review_list" : json.loads(json_model)}
+            return JsonResponse(data)
+        else: 
+            return JsonResponse({"message":"Wrong Method"}, status=400)
+    else:
+        return JsonResponse({"message":"Unauthenticated"}, status=401)
+
+def get_book(request, book_id):
+    if request.user.is_authenticated:
+        if request.method == "GET":    
+            book = MasterBooks.objects.get(pk=book_id)
+            json_model = serializers.serialize("json", [book])
+            data = { "review_list" : json.loads(json_model)}
+            return JsonResponse(data)
+        else: 
+            return JsonResponse({"message":"Wrong Method"}, status=400)
+    else:
+        return JsonResponse({"message":"Unauthenticated"}, status=401)
