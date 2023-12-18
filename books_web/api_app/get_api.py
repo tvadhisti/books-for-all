@@ -48,7 +48,9 @@ def get_question_answer(request):
             for item in question_list:
                 temp_buck = {}
                 json_model = serializers.serialize("json", [item])
-                temp_buck['question'] = json.loads(json_model)
+                temp_buck['question'] = json.loads(json_model)[0]
+                get_book_title = MasterBooks.objects.get(pk=temp_buck['question']['fields']['book'])
+                temp_buck['question']['fields']['book'] = get_book_title.title
 
                 answer = AnswerItem.objects.filter(question=item)
                 json_model = serializers.serialize("json", answer)
@@ -86,3 +88,14 @@ def get_book(request, book_id):
             return JsonResponse({"message":"Wrong Method"}, status=400)
     else:
         return JsonResponse({"message":"Unauthenticated"}, status=401)
+
+def check_wishlist(request, book_id, user_id):
+    if request.method == "GET":    
+        book = MasterBooks.objects.get(pk=book_id)
+        wish = WishlistItem.objects.filter(book=book, user=user_id)
+        if wish:
+            return JsonResponse({"wishlisht_added":True})
+        else:
+            return JsonResponse({"wishlisht_added":False})
+    else: 
+        return JsonResponse({"message":"Wrong Method"}, status=400)
