@@ -4,6 +4,7 @@ from wishlist.models import WishlistItem
 from question.models import QuestionItem, AnswerItem
 from cart.models import CartItem
 from django.http import JsonResponse
+from django.contrib.auth import User
 import json
 from django.core import serializers
 
@@ -70,7 +71,10 @@ def get_review(request, book_id):
             book = MasterBooks.objects.get(pk=book_id)
             review_list = ReviewItem.objects.filter(book=book)
             json_model = serializers.serialize("json", review_list)
-            data = { "review_list" : json.loads(json_model)}
+            json_model = json.loads(json_model)
+            for item in json_model:
+                Users.objects
+            data = { "review_list" : }
             return JsonResponse(data)
         else: 
             return JsonResponse({"message":"Wrong Method"}, status=400)
@@ -96,7 +100,7 @@ def check_wishlist(request, book_id, user_id):
         if wish:
             json_model = serializers.serialize("json", wish)
             data = json.loads(json_model)
-            data['isAdded'] = True
+            data[0]['isAdded'] = True
             return JsonResponse(data, status=200)
         else:
             return JsonResponse({"isAdded":False}, status=404)
