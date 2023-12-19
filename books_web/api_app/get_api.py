@@ -107,3 +107,20 @@ def check_wishlist(request, book_id, user_id):
             return JsonResponse({"isAdded":False}, status=404)
     else: 
         return JsonResponse({"message":"Wrong Method"}, status=400)
+
+def get_wishlist(request):
+    if request.user.is_authenticated:
+        if request.method == "GET":    
+            user = request.user
+            wishlist_items = WishlistItem.objects.filter(user=user)
+            json_model = serializers.serialize("json", wishlist_items)
+            json_model = json.loads(json_model)
+            for ind, item in enumerate(json_model):
+                book = MasterBooks.objects.get(pk=int(item['fields']['book']))
+                json_model[ind]['fields']['book_title'] = book.title
+
+            return JsonResponse({"wishlist_items":json_model}, status=200, safe=False)
+        else:
+            return JsonResponse({"message":"Wrong Method"}, status=400)
+    else: 
+        return JsonResponse({"message":"unauthenticated"}, status=401)

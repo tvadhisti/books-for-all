@@ -28,4 +28,5 @@ urlpatterns = [
     path('get/get_review/<int:book_id>', get_api.get_review, name='get_review_api'),
     path('get/get_book/<int:book_id>', get_api.get_book, name='get_book_api'),
     path('get/check_wishlist/<int:book_id>/<int:user_id>', get_api.check_wishlist, name='check_wishlist_api'),
+    path('get/get_wishlist/', get_api.get_wishlist, name='get_wishlist_api'),
 ]
