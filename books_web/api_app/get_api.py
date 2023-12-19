@@ -94,8 +94,11 @@ def check_wishlist(request, book_id, user_id):
         book = MasterBooks.objects.get(pk=book_id)
         wish = WishlistItem.objects.filter(book=book, user=user_id)
         if wish:
-            return JsonResponse({"wishlisht_added":True})
+            json_model = serializers.serialize("json", wish)
+            data = json.loads(json_model)
+            data['isAdded'] = True
+            return JsonResponse(data, status=200)
         else:
-            return JsonResponse({"wishlisht_added":False})
+            return JsonResponse({"isAdded":False}, status=404)
     else: 
         return JsonResponse({"message":"Wrong Method"}, status=400)
