@@ -72,10 +72,12 @@ def login_user(request):
         if user is not None:
             login(request, user)
             response = {
-                'sessionid':request.session._session_key
+                'sessionid':request.session._session_key,
+                'username':username,
+                'status':True
             }
             
-            return JsonResponse(response, status=200, safe=False)
+            return JsonResponse(response, status=201, safe=False)
         else:
-            messages.info(request, 'Sorry, incorrect username or password. Please try again.')
-    return JsonResponse({'message': 'Wrong Method'}, status=500)
+            return JsonResponse({'message':'Wrong username and password', 'status':False}, status=401)
+    return JsonResponse({'message': 'Wrong Method'}, status=400)
