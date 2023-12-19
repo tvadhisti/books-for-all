@@ -72,7 +72,7 @@ def get_review(request, book_id):
             review_list = ReviewItem.objects.filter(book=book)
             json_model = serializers.serialize("json", review_list)
             json_model = json.loads(json_model)
-            for ind, item in enumerate(json_model:)
+            for ind, item in enumerate(json_model):
                 user = User.objects.get(pk=int(item['fields']['user']))
                 json_model[ind]['fields']['username'] = user.username
             data = { "review_list" :json_model }
