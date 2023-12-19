@@ -6,10 +6,8 @@ from cart.models import CartItem
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.contrib import messages
-import datetime
+from django.contrib.auth.models import User
 
 @csrf_exempt
 def create_review(request):
@@ -82,3 +80,10 @@ def login_user(request):
         else:
             return JsonResponse({'message':'Wrong username and password', 'status':False}, status=401)
     return JsonResponse({'message': 'Wrong Method'}, status=400)
+
+@csrf_exempt
+def register(request):
+    if request.method == "POST":
+        User.objects.create_user(username=request.POST['username'], password=request.POST['password'])
+        return JsonResponse({"message":"Your account has been created!"}, status=201)
+    return JsonResponse({"message":"Bad request! Wrong Method"}, status=400)
