@@ -50,7 +50,7 @@ def get_question_answer(request):
                 json_model = serializers.serialize("json", [item])
                 temp_buck['question'] = json.loads(json_model)[0]
                 get_book_title = MasterBooks.objects.get(pk=temp_buck['question']['fields']['book'])
-                temp_buck['question']['fields']['book'] = get_book_title.title
+                temp_buck['question']['fields']['book_title'] = get_book_title.title
 
                 answer = AnswerItem.objects.filter(question=item)
                 json_model = serializers.serialize("json", answer)
