@@ -4,7 +4,7 @@ from wishlist.models import WishlistItem
 from question.models import QuestionItem, AnswerItem
 from cart.models import CartItem
 from django.http import JsonResponse
-from django.contrib.auth import User
+from django.contrib.auth.models import User
 import json
 from django.core import serializers
 
@@ -72,8 +72,9 @@ def get_review(request, book_id):
             review_list = ReviewItem.objects.filter(book=book)
             json_model = serializers.serialize("json", review_list)
             json_model = json.loads(json_model)
-            for item in json_model:
-                Users.objects
+            for ind, item in enumerate(json_model:)
+                user = User.objects.get(pk=int(item['fields']['user']))
+                json_model[ind]['fields']['username'] = user.username
             data = { "review_list" : }
             return JsonResponse(data)
         else: 
