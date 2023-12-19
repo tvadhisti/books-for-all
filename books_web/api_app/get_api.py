@@ -102,7 +102,7 @@ def check_wishlist(request, book_id, user_id):
             json_model = serializers.serialize("json", wish)
             data = json.loads(json_model)
             data[0]['isAdded'] = True
-            return JsonResponse(data, status=200)
+            return JsonResponse(data, status=200, safe=False)
         else:
             return JsonResponse({"isAdded":False}, status=404)
     else: 
