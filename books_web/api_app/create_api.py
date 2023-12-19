@@ -74,6 +74,7 @@ def login_user(request):
             response = {
                 'sessionid':request.session._session_key,
                 'username':username,
+                'userid' : user.id,
                 'status':True
             }
             
