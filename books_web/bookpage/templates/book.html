@@ -60,10 +60,25 @@
                     <h4 class="book-genre">
                         {{ book.genre }}
                     </h4>
-                    <button class="btn btn-primary btn-lg add-to-wishlist ms-3 mt-4" data-toggle="modal"
+                    <button class="btn btn-primary btn-lg add-to-wishlist ms-1 mt-1" data-toggle="modal"
                         data-target="#wishlistModal" data-bookid="{{ book.id }}"
                         style="background-color: #99C1B4; border: none; color: black;">
                         Add to Wishlist
+                    </button>
+                    <button class="btn btn-primary btn-lg add-to-cart ms-1 mt-1" data-toggle="modal"
+                        data-target="#cartModal" data-bookid="{{ book.id }}"
+                        style="background-color: #2AAA8A; border: none; color: black;">
+                        Add to Cart
+                    </button>
+                    <button class="btn btn-primary btn-lg add-to-review ms-1 mt-1" data-toggle="modal"
+                        data-target="#reviewModal" data-bookid="{{ book.id }}"
+                        style="background-color: #7DF9FF; border: none; color: black;">
+                        Add Review
+                    </button>
+                    <button class="btn btn-primary btn-lg add-to-question ms-1 mt-1" data-toggle="modal"
+                        data-target="#questionModal" data-bookid="{{ book.id }}"
+                        style="background-color: #7DF9FF; border: none; color: black;">
+                        Add Question
                     </button>
                 </div>
             </div>
@@ -73,6 +88,15 @@
             <p class="book-desc-p">
                 {{ book.description }}
             </p>
+        </div>
+        <div class="desc-container" id="reviewElement">
+            <h2 class="book-desc">review</h2>
+            {% for item in review %}
+                <p class="book-desc-p">
+                    by {{ item.user.username }}<br>
+                    {{ item.review }}
+                </p>
+            {% endfor %}
         </div>
     </div>
 
@@ -101,6 +125,41 @@
                 });
             });
         });
+        $(document).ready(function () {
+            // Capture the click event on the "Add to Wishlist" button
+            $('.add-to-cart').click(function () {
+                var bookId = $(this).data('bookid');
+
+                // Send an AJAX request to add the book to the wishlist
+                $.ajax({
+                    url: '{% url "add_to_cart" 0 %}'.replace('0', bookId),  // Replace 0 with the book ID
+                    type: 'GET',
+                    success: function () {
+                        // Trigger the modal to show the confirmation message
+                        $('#cartModal').modal('show');
+                    },
+                    error: function () {
+                        console.log('Error adding to wishlist');
+                    }
+                });
+            });
+        });
+        $(document).ready(function () {
+            // Capture the click event on the "Add to Review" button
+            $('.add-to-review').click(function () {
+                var bookId = $(this).data('bookid');
+                $("#reviewModal #reviewForm").attr("value", bookId);
+                $('#reviewModal').modal('show');
+            });
+        });
+        $(document).ready(function () {
+            // Capture the click event on the "Add to Review" button
+            $('.add-to-question').click(function () {
+                var bookId = $(this).data('bookid');
+                $("#questionModal #bookid").attr("value", bookId);
+                $('#questionModal').modal('show');
+            });
+        });
     </script>
 
     <!-- Wishlist Confirmation Modal -->
@@ -117,6 +176,59 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Book Added to Cart</h5>
+                </div>
+                <div class="modal-body">
+                    The book has been added to your cart.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewModalLabel">Type your review!</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{% url 'book_review' %}">
+                        {% csrf_token %}
+                        {% comment %} <div class="form-container"> {% endcomment %}
+                            <input type="hidden" id="reviewForm" name="reviewForm" value="">
+                            <input type="text" name="review" class="form-control" placeholder="Write your thoughts here!"
+                                style="background-color: #f3efef; width: 450px; height: 60px; margin-bottom: 20px; margin-bottom: 20px; margin-right: 10px;">
+                            <input class="btn-login_btn" type="submit" value="Submit review">
+                        {% comment %} </div> {% endcomment %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="questionModalLabel">Type your question here!</h5>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'add_question' %}">
+                    {% csrf_token %}
+                        <input type="hidden" id="bookid" name="bookid" value="">
+                        <input type="text" name="question" class="form-control" placeholder="Write your question here!"
+                            style="background-color: #f3efef; width: 450px; height: 60px; margin-bottom: 20px; margin-bottom: 20px; margin-right: 10px;">
+                        <input class="btn-login_btn" type="submit" value="Submit question`">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 
