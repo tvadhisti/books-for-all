@@ -4,7 +4,7 @@ WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONPATH=/app \
-    DJANGO_SETTINGS_MODULE=books-for-all.settings \
+    DJANGO_SETTINGS_MODULE=books_web.settings \
     PORT=8000 \
     WEB_CONCURRENCY=2
 
