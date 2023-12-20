@@ -53,12 +53,19 @@ def get_question_answer(request):
                 get_book_title = MasterBooks.objects.get(pk=temp_buck['question']['fields']['book'])
                 temp_buck['question']['fields']['book_title'] = get_book_title.title
 
-                answer = AnswerItem.objects.filter(question=item)
-                json_model = serializers.serialize("json", answer)
-                temp_buck['answer_list']=json.loads(json_model)
+                answer_list = AnswerItem.objects.filter(question=item)
+                temp_buck['answer_list'] = []
+
+                for answer in answer_list:
+                    answer_json = json.loads(serializers.serialize("json", [answer]))[0]
+                    user_id = answer_json['fields']['user']
+                    user = User.objects.get(pk=user_id)
+                    answer_json['fields']['username'] = user.username
+                    temp_buck['answer_list'].append(answer_json)
+
                 answer_buck.append(temp_buck)
 
-            data = { "question_answer_list" : answer_buck}
+            data = {"question_answer_list": answer_buck}
             return JsonResponse(data)
         else: 
             return JsonResponse({"message":"Wrong Method"}, status=400)
