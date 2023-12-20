@@ -125,7 +125,7 @@ def get_wishlist(request):
             for ind, item in enumerate(json_model):
                 book = MasterBooks.objects.get(pk=int(item['fields']['book']))
                 json_model[ind]['fields']['book_title'] = book.title
-                json_model[ind]['fields']['book_author'] = book.author
+                json_model[ind]['fields']['author'] = book.author
 
             return JsonResponse({"wishlist_items":json_model}, status=200, safe=False)
         else:
