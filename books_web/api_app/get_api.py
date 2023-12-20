@@ -97,7 +97,7 @@ def get_book(request, book_id):
 def check_wishlist(request, book_id, user_id):
     if request.method == "GET":    
         book = MasterBooks.objects.get(pk=book_id)
-        wish = WishlistItem.objects.filter(book=book, user=user_id)
+        wish = WishlistItem.objects.filter(user=user_id).filter(book=book)
         if wish:
             json_model = serializers.serialize("json", wish)
             data = json.loads(json_model)
@@ -118,6 +118,7 @@ def get_wishlist(request):
             for ind, item in enumerate(json_model):
                 book = MasterBooks.objects.get(pk=int(item['fields']['book']))
                 json_model[ind]['fields']['book_title'] = book.title
+                json_model[ind]['fields']['book_author'] = book.author
 
             return JsonResponse({"wishlist_items":json_model}, status=200, safe=False)
         else:
